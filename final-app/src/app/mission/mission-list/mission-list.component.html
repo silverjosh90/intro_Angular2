@@ -1,0 +1,9 @@
+<h2>Apollo Missions</h2>
+<div fxLayoutWrap fxLayout="row">
+  <app-mission-summary
+    fxFlex
+    *ngFor="let mission of missions"
+    [mission]="mission"
+    (remove)="handleRemove($event)">
+  </app-mission-summary>
+</div>

@@ -1,3 +1,23 @@
-<h1>
-  {{title}}
-</h1>
+<h1>  {{title}}  </h1>
+
+  <input type="text" [value]="name" (blur)="handleBlur($event)">
+
+  <input type="text" [ngModel]="taco" (ngModelChange)="handleChange($event)">
+  <input type="text" [(ngModel)]="condiments">
+  <div>name: {{name}}</div>
+  <div>taco: {{taco}}</div>
+  <div>condiment: {{condiments}}</div>
+
+  <div *ngIf="name.length > 2; else small">
+    <p>right size: {{name}}</p>
+  </div>
+  <ng-template #small>
+    <p>too small: {{name}}</p>
+  </ng-template>
+
+  <ul *ngFor="let car of myCars; let ind = index; let o = odd">
+
+    <li [style.backgroundColor] = "(o ? 'red' : 'blue')">
+      {{ind}}: {{car}}
+    </li>
+  </ul>

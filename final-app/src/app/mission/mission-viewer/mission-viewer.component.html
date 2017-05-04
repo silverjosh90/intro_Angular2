@@ -1,0 +1,5 @@
+<h2>Mission ID: {{ mission?.id }}</h2>
+<app-mission-form
+  [detail]="mission"
+  (addCrew)="addCrew($event)">
+</app-mission-form>

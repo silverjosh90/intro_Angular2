@@ -1,0 +1,30 @@
+{
+  "missions": [{
+    "id": "",
+    "name": "",
+    "launch_date": "",
+    "end_date": "",
+    "image": "",
+    "vehicles": [{
+      "vehicle_id": "",
+      "role": ""
+    }],
+    "crew": [{
+      "astronaut_id": "",
+      "role": ""
+    }],
+    "summary": "",
+    "wiki_href": ""
+  }],
+  "vehicles": [{
+    "id": "",
+    "name": "",
+    "model_name": ""
+  }],
+  "astronauts": [{
+    "first_name": "",
+    "last_name": "",
+    "wiki_href": "",
+    "image": ""
+  }]
+}

@@ -1,0 +1,38 @@
+  <md-card class="mission-card">
+    <md-card-header>
+      <md-card-title>{{ mission.name }}</md-card-title>
+      <md-card-subtitle>{{ mission.id }}</md-card-subtitle>
+    </md-card-header>
+    <img
+      md-card-md-image
+      *ngIf="mission.image"
+      src="/assets/missions/{{ mission.image }}">
+    <md-card-content>
+      <p>
+        {{ mission.launch_date | date: 'MMMM dd, yyyy' }}
+        <span *ngIf="mission.end_date">
+          - {{ mission.end_date | date: 'MMMM dd, yyyy' }}
+        </span>
+      </p>
+      <p *ngIf="!editing">
+        {{ mission.summary }}
+      </p>
+      <div *ngIf="editing">
+        <md-input-container class="mission-form-full-width">
+          <textarea
+            mdInput
+            placeholder="Mission Summary"
+            [value]="mission.summary"
+            (input)="onSummaryChange(summary.value)"
+            #summary></textarea>
+        </md-input-container>
+      </div>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button (click)="onViewMission()">View Mission</button>
+      <button md-raised-button (click)="onToggleEdit()">
+        {{ editing ? 'Save' : 'Inline-Edit' }}
+      </button>
+      <button md-raised-button (click)="onRemove()">Remove</button>
+    </md-card-actions>
+  </md-card>

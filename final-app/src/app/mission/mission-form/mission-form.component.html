@@ -1,0 +1,108 @@
+<div
+  *ngIf="detail.image"
+  style="float:right;">
+  <img src="/assets/missions/{{ detail.image }}" width="250">
+</div>
+<form #form="ngForm" novalidate class="mission-form">
+  <div>
+    <md-input-container class="mission-form-full-width">
+      <input
+        type="text"
+        name="name"
+        #name
+        mdInput
+        placeholder="Title"
+        [ngModel]="detail.name">
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container class="mission-form-full-width">
+      <input
+        type="text"
+        name="launch_date"
+        mdInput
+        placeholder="Launch date"
+        [ngModel]="detail.launch_date">
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container class="mission-form-full-width">
+      <input
+        type="text"
+        name="end_date"
+        mdInput
+        placeholder="Return date"
+        [ngModel]="detail.end_date">
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container class="mission-form-full-width">
+      <textarea cols="50" rows="5"
+        required
+        #summary="ngModel"
+        name="summary"
+        mdInput
+        placeholder="Summary"
+        [ngModel]="detail.summary">
+        </textarea>
+        <md-error>
+          Summary required
+        </md-error>
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container class="mission-form-full-width">
+      <input
+        name="wiki_href"
+        mdInput
+        placeholder="Reference link"
+        [ngModel]="detail.wiki_href">
+      <md-hint align="end">Wikipedia link</md-hint>
+    </md-input-container>
+  </div>
+  <div>
+    <div class="mission-form-section" *ngIf="detail.crew && detail.crew.length > 0">
+      Crew:
+      <div fxFlexWrap fxLayout="row">
+        <app-astronaut-viewer
+          *ngFor="let crew of detail.crew"
+          [astronautId]="crew.astronaut_id"
+          [crewRole]="crew.role"
+          fxFlex>
+        </app-astronaut-viewer>
+      </div>
+    </div>
+    <div class="mission-form-section">
+      Add Crew:
+      <md-select
+        #crewRole
+        (change)="onCrewChange(crewRole.selected.value)"
+        placeholder="select crew role">
+        <md-option
+          *ngFor="let role of crewRoles"
+          [value]="role">{{ role }}</md-option>
+      </md-select>
+      <md-select
+        #astronaut
+        (change)="onAstronautChange(astronaut.selected.value)"
+        placeholder="select astronaut">
+        <md-option
+          *ngFor="let astronaut of astronauts"
+          [value]="astronaut.id">{{ astronaut.last_name }}, {{ astronaut.first_name }}</md-option>
+      </md-select>
+      <button md-raised-button (click)="onAddAstronaut()">add</button>
+    </div>
+  </div>
+</form>
+
+<h3>Mission Images</h3>
+<div>
+  <strong>Picture name</strong><br />
+  <a href="#" target="_blank"><img src="/.png" width="200" border="0" /></a><br />
+  <em>picture description</em>
+</div>
+
+<div>Detail: {{ detail | json }}</div>
+<div>{{ form.value | json }}</div>
+<div>Valid: {{ form.valid | json }}</div>
+<div>Invalid: {{ form.invalid | json }}</div>
